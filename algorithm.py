@@ -64,7 +64,7 @@ for i in range(50):
 
 for i in range(100):
     for ag in Agent.agents:
-        ag.current_success = ag.success(0)
+        ag.current_success = ag.success(i)
     Agent.agents = sorted(Agent.agents, key=lambda obj: obj.current_success, reverse=True)[:25]
     new_gen = []
     for ag in Agent.agents:
