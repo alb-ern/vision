@@ -1,4 +1,5 @@
 import numpy as np
+from concurrent.futures import ThreadPoolExecutor
 import thing
 import matplotlib.pyplot as plt
 import tqdm
@@ -62,12 +63,21 @@ class Agent:
 for i in range(50):
     a = Agent()
 
+BATCH=20
+
+def task()
+
+def multi_success(ag,i):
+    ag_sucs = []
+    for x in range(BATCH):
+        ag_sucs.append(ag.success(i * BATCH + x))
+    ag.current_success = sum(ag_sucs)/BATCH
+
+
+
 for i in range(100):
     for ag in Agent.agents:
-        ag_sucs=[]
-        for x in range(10):
-            ag_sucs.append(ag.success(i*10+x))
-        ag.current_success=sum(ag_sucs)
+        multi_success(ag,i)
     Agent.agents = sorted(Agent.agents, key=lambda obj: obj.current_success, reverse=True)[:25]
     new_gen = []
     for ag in Agent.agents:
@@ -77,6 +87,7 @@ for i in range(100):
         new_gen.append(new)
     Agent.agents.extend(new_gen)
     print(Agent.agents[0].current_success)
+
 
 
 
