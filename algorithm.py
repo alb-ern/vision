@@ -64,7 +64,10 @@ for i in range(50):
 
 for i in range(100):
     for ag in Agent.agents:
-        ag.current_success = ag.success(i)
+        ag_sucs=[]
+        for x in range(10):
+            ag_sucs.append(ag.success(i*10+x))
+        ag.current_success=sum(ag_sucs)
     Agent.agents = sorted(Agent.agents, key=lambda obj: obj.current_success, reverse=True)[:25]
     new_gen = []
     for ag in Agent.agents:
