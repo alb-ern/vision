@@ -1,20 +1,17 @@
 import numpy
 import algo
-from parse import images,labels
+from parse import images, labels
 
 
-BATCH_SIZE=20
-iter_count=len(images)//BATCH_SIZE
+BATCH_SIZE = 20
+iter_count = len(images) // BATCH_SIZE
 
 
-agent=algo.Agent()
+agent = algo.Agent()
 
 
 for i in range(iter_count):
-	batch=images[i*BATCH_SIZE:i*BATCH_SIZE+BATCH_SIZE]
-	agent.forward(batch)
-
-
-
-
-
+    sl = slice(i * BATCH_SIZE, i * BATCH_SIZE + BATCH_SIZE)
+    batch = images[sl], labels[sl]
+    agent.forward(batch)
+    print(agent.error)
