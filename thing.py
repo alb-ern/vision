@@ -14,3 +14,4 @@ def view():
 			print(int(bool(e)),end="")
 		print()
 
+print(images[0].flatten())
