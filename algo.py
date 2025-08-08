@@ -20,7 +20,7 @@ class Agent:
         self.b1 = np.random.uniform(-1, 1, 784)
         self.w2 = np.random.uniform(-1, 1, (784, 196))
         self.b2 = np.random.uniform(-1, 1, 196)
-        self.w3 = np.random.uniform(-1, 1, (196,10))
+        self.w3 = np.random.uniform(-1, 1, (196, 10))
         self.b3 = np.random.uniform(-1, 1, 10)
 
     def forward(self, batch):
@@ -29,9 +29,13 @@ class Agent:
         layer1 = rrelu((images.dot(self.w1) + self.b1) / 785)
         layer2 = rrelu((layer1.dot(self.w2) + self.b2) / 785)
         out = softmax_rows((layer2.dot(self.w3) + self.b3) / 197)
+
+        self.pre_error=self.error
         self.error = sum((1 - out[np.arange(out.shape[0]), labels])**2)
-        self.error = layer1[0,0],layer2[0,0],out[0,0]
         return out
 
     def backward(self):
+        self.d_error=self.error-self.pre_error
+        if self.d_error>0:
+            
         return
