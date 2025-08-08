@@ -1,5 +1,5 @@
 import numpy
-import algo
+import agent
 from parse import images, labels
 
 
@@ -7,7 +7,7 @@ BATCH_SIZE = 1
 iter_count = len(images) // BATCH_SIZE
 
 
-agent = algo.Agent()
+agent = agent.Agent()
 
 
 for i in range(iter_count):

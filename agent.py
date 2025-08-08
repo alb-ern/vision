@@ -1,14 +1,14 @@
 import numpy as np
 
 
+
+
 def rrelu(x):
-    # assuming x is float or int numpy array
     negative_slope = 0.01
     return np.where(x > 0, x, x * negative_slope)
 
 
 def softmax_rows(arr):
-    # subtract max per row for numerical stability
     exps = np.exp(arr - np.max(arr, axis=1, keepdims=True))
     return exps / np.sum(exps, axis=1, keepdims=True)
 
@@ -37,5 +37,5 @@ class Agent:
     def backward(self):
         self.d_error=self.error-self.pre_error
         if self.d_error>0:
-            
+            pass
         return
